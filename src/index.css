@@ -1,14 +1,35 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+ul.striped-list > li:nth-of-type(odd) {
+    background-color: #ebebeb ;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+ul {
+  list-style: none;
+}
+
+.app-component {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.roomListComponent {
+  width: 20%;
+  float: left;
+  background-color: #dedede;
+}
+
+
+
+.room-list-item:hover {
+  background-color: #f7f7f7;
+
+}
+
+.messageListComponent {
+  width: 80%;
+  float: left;
+  background-color: #f7f7f7;
+}
+
+.message {
+  width: 100%;
 }
