@@ -5,50 +5,47 @@ class RoomList extends Component {
     super(props);
     this.state = {
       rooms : [],
-      newRoomName : ''
+      newRoomName : '',
+
     };
-    this.roomsRef = this.props.firebase.database().ref('Rooms');
+    this.roomsRef = this.props.firebase.database().ref('rooms');
   }
 
-    componentDidMount() {
-
-      this.roomsRef.on('child_added', snapshot => {
-        const room = snapshot.val();
-        room.key = snapshot.key;
-        this.setState({ rooms: this.state.rooms.concat( room ) })
-      });
-
-    }
-
-    createNewRoom(newRoomName) {
-      this.roomsRef.push({
-        name: newRoomName
-      });
-      this.setState({newRoomName: ''});
-    }
-
-    setNewRoomName(e) {
-    this.setState({ newRoomName: e.target.value });
+  componentDidMount() {
+    this.roomsRef.on('child_added', snapshot => {
+      const room = snapshot.val();
+      room.key = snapshot.key;
+      this.setState({ rooms: this.state.rooms.concat( room ) })
+    });
   }
 
+  createNewRoom(newRoomName) {
+    this.roomsRef.push({
+      name: newRoomName
+    });
+    this.setState({newRoomName: ''})
+  }
+
+  setNewRoomName(e) {
+    this.setState({ newRoomName: e.target.value })
+  }
 
   render() {
-
-    const Rooms = this.state.rooms.map( (room) => {
-      return (
-        <li key={room.key}>
-          {room.name}
-        </li>
-      )
-    })
-
     return (
-      <div>
-        <div>
-          <h1>Chat Rooms</h1>
-          {Rooms}
-        </div>
-        <section>
+      <div className="room-list-component section">
+        <section className="room-list">
+          <p className="app-title"><h1>Bloc Chat</h1></p>
+          <ul>
+            {this.state.rooms.map( (room, index) =>
+              <li className="room-list-item" key={index}>
+                <p onClick={ () => this.props.setActiveRoom(room)}>
+                  {room.name}
+                </p>
+              </li>
+            )}
+          </ul>
+        </section>
+        <section className="newroom">
           <h1>Create a Room</h1>
           <form onSubmit={ (e) => {
             e.preventDefault();
@@ -56,7 +53,7 @@ class RoomList extends Component {
 
             <input type="text" value={this.state.newRoomName} onChange={ (e) => this.setNewRoomName(e)}/>
             <input type="submit"/>
-            </form>
+          </form>
         </section>
       </div>
     )
