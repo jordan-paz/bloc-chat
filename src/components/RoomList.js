@@ -19,6 +19,8 @@ class RoomList extends Component {
     });
   }
 
+
+
   createNewRoom(newRoomName) {
     this.roomsRef.push({
       name: newRoomName
@@ -34,7 +36,7 @@ class RoomList extends Component {
     return (
       <div className="room-list-component section">
         <section className="room-list">
-          <p className="app-title"><h1>Bloc Chat</h1></p>
+          <h1 className="app-title" >Bloc Chat</h1>
           <ul>
             {this.state.rooms.map( (room, index) =>
               <li className="room-list-item" key={index}>

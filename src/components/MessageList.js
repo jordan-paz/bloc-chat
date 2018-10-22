@@ -30,7 +30,7 @@ class MessageList extends Component {
       username: 'USERNAME GOES HERE',
       sentAt: this.props.firebase.database.ServerValue.TIMESTAMP
     })
-    this.setState({newMessageContent: ''})
+    this.setState( {newMessageContent: ''} )
   }
 
   filterActiveRoomMessages() {
